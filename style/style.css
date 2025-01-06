@@ -4,11 +4,7 @@ html {
 
 body {
   margin: 0;
-}
-
-@font-face {
-    font-family: 'LXGW WenKai TC';
-    src: url('LXGWWenkai-Medium.ttf') format('woff');/* 所有现代浏览器 */
+  font-family: "LXGW WenKai TC", serif;
 }
 
 .container {
