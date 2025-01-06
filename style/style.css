@@ -8,7 +8,7 @@ body {
 
 @font-face {
     font-family: 'LXGW WenKai TC';
-    src: url('XGWWenkai-Medium.ttf') format('woff');/* 所有现代浏览器 */
+    src: url('LXGWWenkai-Medium.ttf') format('woff');/* 所有现代浏览器 */
 }
 
 .container {
