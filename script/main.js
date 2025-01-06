@@ -35,6 +35,7 @@ let audio = null
 document.addEventListener("DOMContentLoaded", () => {
   audio = new Audio("music/bgMusic.mp3")
   audio.preload = "auto"
+  audio.play()//初始状态播放音频
 })
 
 const playPauseButton = document.getElementById('playPauseButton')
