@@ -30,30 +30,32 @@ const fetchData = () => {
 }
 
 let audio = null
+let isPlaying = true // 初始状态为播放
 
-// 在文档加载时预加载音频
+// 在文档加载时预加载音频并自动播放
 document.addEventListener("DOMContentLoaded", () => {
   audio = new Audio("music/bgMusic.mp3")
   audio.preload = "auto"
+  audio.loop = true // 设置循环播放
+  audio.play().catch(error => {
+    console.log("Audio playback failed:", error)
+  })
+
+  const playPauseButton = document.getElementById('playPauseButton')
+  playPauseButton.classList.add('playing') // 初始按钮显示为播放状态
+
+  playPauseButton.addEventListener('click', () => {
+    isPlaying = !isPlaying // 切换播放状态
+
+    if (isPlaying) {
+      audio.play()
+      playPauseButton.classList.add('playing')
+    } else {
+      audio.pause()
+      playPauseButton.classList.remove('playing')
+    }
+  })
 })
-
-const playPauseButton = document.getElementById('playPauseButton')
-let isPlaying = true // 初始状态为未播放
-
-playPauseButton.addEventListener('click', () => {
-  isPlaying = !isPlaying // 切换播放状态
-
-  if (isPlaying) {
-    // 如果当前是播放状态，则开始播放音频并更新按钮样式
-    audio.play()
-    playPauseButton.classList.add('playing')
-  } else {
-    // 如果当前是暂停状态，则暂停音频并更新按钮样式
-    audio.pause()
-    playPauseButton.classList.remove('playing')
-  }
-})
-
 
 
 
