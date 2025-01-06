@@ -1,17 +1,17 @@
 // Import the data to customize and insert them into page
 const fetchData = () => {
   fetch("customize.json")
-    .then(data => data.json())
-    .then(data => {
-      dataArr = Object.keys(data)
+   .then(data => data.json())
+   .then(data => {
+      dataArr = Object.keys(data);
       dataArr.map(customData => {
-        if (data[customData] !== "") {
+        if (data[customData]!== "") {
           if (customData === "imagePath") {
             document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData])
+             .querySelector(`[data-node-name*="${customData}"]`)
+             .setAttribute("src", data[customData]);
           } else {
-            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData]
+            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
           }
         }
 
@@ -19,14 +19,13 @@ const fetchData = () => {
         // Run amimation if so
         if (dataArr.length === dataArr.indexOf(customData) + 1) {
           document.querySelector("#startButton").addEventListener("click", () => {
-            document.querySelector(".startSign").style.display = "none"
-            animationTimeline()
-          }
-          )
-          // animationTimeline()
+            document.querySelector(".startSign").style.display = "none";
+            animationTimeline();
+          });
+          // animationTimeline();
         }
-      })
-    })
+      });
+    });
 }
 
 let audio = null;
@@ -56,51 +55,49 @@ playPauseButton.addEventListener('click', () => {
 });
 
 
-
-
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
-  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0]
-  const hbd = document.getElementsByClassName("wish-hbd")[0]
+  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
+  const hbd = document.getElementsByClassName("wish-hbd")[0];
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
-    .split("")
-    .join("</span><span>")}</span`
+   .split("")
+   .join("</span><span>")}</span`;
 
   hbd.innerHTML = `<span>${hbd.innerHTML
-    .split("")
-    .join("</span><span>")}</span`
+   .split("")
+   .join("</span><span>")}</span`;
 
   const ideaTextTrans = {
     opacity: 0,
     y: -20,
     rotationX: 5,
     skewX: "15deg"
-  }
+  };
 
   const ideaTextTransLeave = {
     opacity: 0,
     y: 20,
     rotationY: 5,
     skewX: "-15deg"
-  }
+  };
 
-  const tl = new TimelineMax()
+  const tl = new TimelineMax();
 
   tl
-    .to(".container", 0.1, {
+   .to(".container", 0.1, {
       visibility: "visible"
     })
-    .from(".one", 0.7, {
+   .from(".one", 0.7, {
       opacity: 0,
       y: 10
     })
-    .from(".two", 0.4, {
+   .from(".two", 0.4, {
       opacity: 0,
       y: 10
     })
-    .to(
+   .to(
       ".one",
       0.7,
       {
@@ -109,7 +106,7 @@ const animationTimeline = () => {
       },
       "+=2.5"
     )
-    .to(
+   .to(
       ".two",
       0.7,
       {
@@ -118,12 +115,12 @@ const animationTimeline = () => {
       },
       "-=1"
     )
-    .from(".three", 0.7, {
+   .from(".three", 0.7, {
       opacity: 0,
       y: 10
       // scale: 0.7
     })
-    .to(
+   .to(
       ".three",
       0.7,
       {
@@ -132,15 +129,15 @@ const animationTimeline = () => {
       },
       "+=2"
     )
-    .from(".four", 0.7, {
+   .from(".four", 0.7, {
       scale: 0.2,
       opacity: 0
     })
-    .from(".fake-btn", 0.3, {
+   .from(".fake-btn", 0.3, {
       scale: 0.2,
       opacity: 0
     })
-    .staggerTo(
+   .staggerTo(
       ".hbd-chatbox span",
       0.5,
       {
@@ -148,10 +145,10 @@ const animationTimeline = () => {
       },
       0.05
     )
-    .to(".fake-btn", 0.1, {
+   .to(".fake-btn", 0.1, {
       backgroundColor: "#8FE3B6"
     })
-    .to(
+   .to(
       ".four",
       0.5,
       {
@@ -161,21 +158,21 @@ const animationTimeline = () => {
       },
       "+=0.7"
     )
-    .from(".idea-1", 0.7, ideaTextTrans)
-    .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-2", 0.7, ideaTextTrans)
-    .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-3", 0.7, ideaTextTrans)
-    .to(".idea-3 strong", 0.5, {
+   .from(".idea-1", 0.7, ideaTextTrans)
+   .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
+   .from(".idea-2", 0.7, ideaTextTrans)
+   .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
+   .from(".idea-3", 0.7, ideaTextTrans)
+   .to(".idea-3 strong", 0.5, {
       scale: 1.2,
       x: 10,
       backgroundColor: "rgb(21, 161, 237)",
       color: "#fff"
     })
-    .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-4", 0.7, ideaTextTrans)
-    .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(
+   .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
+   .from(".idea-4", 0.7, ideaTextTrans)
+   .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
+   .from(
       ".idea-5",
       0.7,
       {
@@ -188,8 +185,8 @@ const animationTimeline = () => {
       },
       "+=0.5"
     )
-    .to(
-      ".idea-5 .smiley",
+   .to(
+      ".idea-5.smiley",
       0.7,
       {
         rotation: 90,
@@ -197,7 +194,7 @@ const animationTimeline = () => {
       },
       "+=0.4"
     )
-    .to(
+   .to(
       ".idea-5",
       0.7,
       {
@@ -206,7 +203,7 @@ const animationTimeline = () => {
       },
       "+=2"
     )
-    .staggerFrom(
+   .staggerFrom(
       ".idea-6 span",
       0.8,
       {
@@ -217,7 +214,7 @@ const animationTimeline = () => {
       },
       0.2
     )
-    .staggerTo(
+   .staggerTo(
       ".idea-6 span",
       0.8,
       {
@@ -229,7 +226,7 @@ const animationTimeline = () => {
       0.2,
       "+=1"
     )
-    .staggerFromTo(
+   .staggerFromTo(
       ".baloons img",
       2.5,
       {
@@ -242,7 +239,7 @@ const animationTimeline = () => {
       },
       0.2
     )
-    .from(
+   .from(
       ".lydia-dp",
       0.5,
       {
@@ -254,13 +251,13 @@ const animationTimeline = () => {
       },
       "-=2"
     )
-    .from(".hat", 0.5, {
+   .from(".hat", 0.5, {
       x: -100,
       y: 350,
       rotation: -180,
       opacity: 0
     })
-    .staggerFrom(
+   .staggerFrom(
       ".wish-hbd span",
       0.7,
       {
@@ -273,7 +270,7 @@ const animationTimeline = () => {
       },
       0.1
     )
-    .staggerFromTo(
+   .staggerFromTo(
       ".wish-hbd span",
       0.7,
       {
@@ -289,7 +286,7 @@ const animationTimeline = () => {
       0.1,
       "party"
     )
-    .from(
+   .from(
       ".wish h5",
       0.5,
       {
@@ -299,7 +296,7 @@ const animationTimeline = () => {
       },
       "party"
     )
-    .staggerTo(
+   .staggerTo(
       ".eight svg",
       1.5,
       {
@@ -311,31 +308,31 @@ const animationTimeline = () => {
       },
       0.3
     )
-    .to(".six", 0.5, {
+   .to(".six", 0.5, {
       opacity: 0,
       y: 30,
       zIndex: "-1"
     })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
-    .to(
+   .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+   .to(
       ".last-smile",
       0.5,
       {
         rotation: 90
       },
       "+=1"
-    )
+    );
 
   // tl.seek("currentStep");
   // tl.timeScale(2);
 
   // Restart Animation on click
-  const replyBtn = document.getElementById("replay")
+  const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
-    tl.restart()
-
-  })
+    tl.restart();
+  });
 }
 
+
 // Run fetch and animation in sequence
-fetchData()
+fetchData();
